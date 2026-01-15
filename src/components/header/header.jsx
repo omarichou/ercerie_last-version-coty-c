@@ -444,6 +444,7 @@ const Header = () => {
               className="text-sm text-[#3e3e3e] dark:text-white  transform hover:scale-105 transition duration-200"
             >
               {t("home")}
+
             </Link>
             <Link
               href={"/historique"}
