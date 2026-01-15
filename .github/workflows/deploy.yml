@@ -20,5 +20,4 @@ jobs:
           script: |
             cd ~/ercerie_last-version-coty-c
             git pull origin main
-            docker compose up -d
-            docker system prune -f
+            docker compose up 
