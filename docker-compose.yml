@@ -19,8 +19,8 @@ services:
       - CLOUD_NAME=ds09ny0ui
       - API_KEY=137831687364899
       - API_SECRET=hlZLJ--CsNShpHooQS1zwoi8CII
-      - NEXTAUTH_URL=https://test_vps.crystalmercerie.com/
-      - NEXT_PUBLIC_MY_URL=https://test_vps.crystalmercerie.com
+      - NEXTAUTH_URL=https://testvps.crystalmercerie.com/
+      - NEXT_PUBLIC_MY_URL=https://testvps.crystalmercerie.com
       - YALIDINE_API_ID=45767588410246590743
       - YALIDINE_API_TOKEN=4hCGJIkgNAaidrqoz2Xvxw6jFp0W8VTzoQxXKStnGcln3ZyumfrUwd97Ri7PRMcs
     restart: unless-stopped
@@ -53,7 +53,7 @@ services:
       - webroot:/var/www/html
     depends_on:
       - nginx
-    command: certonly --webroot --webroot-path=/var/www/html --email omarichou567@gmail.com --agree-tos --no-eff-email --non-interactive --keep-until-expiring -d test_vps.crystalmercerie.com
+    command: certonly --webroot --webroot-path=/var/www/html --email omarichou567@gmail.com --agree-tos --no-eff-email --non-interactive --keep-until-expiring -d testvps.crystalmercerie.com
 
 networks:
   crystal-app-network-prod:
