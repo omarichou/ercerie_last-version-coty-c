@@ -470,7 +470,7 @@ const Page = () => {
             width={150}
             height={150}
             alt={""}
-             unoptimized={true} 
+            //  unoptimized={true} 
           />
         </Link>
         <div className="flex-grow h-px bg-or_color2 dark:bg-or_color"></div>

@@ -794,7 +794,7 @@ product.variant.forEach((variant) => {
                     width={800}
                     height={800}
                     quality={70}
-                     unoptimized={true} 
+                    //  unoptimized={true} 
                   
                     priority={currentImageIndex === 0}
                     className={`w-full h-full object-cover transition-all duration-500 ${
@@ -859,7 +859,7 @@ product.variant.forEach((variant) => {
                   height={80}
                   className="w-full h-full object-cover"
                   loading="lazy"
-                   unoptimized={true} 
+                  //  unoptimized={true} 
                 />
 
                 {/* Overlay de sélection */}
@@ -983,7 +983,7 @@ className={`w-25 h-20 md:w-30 md:h-25 rounded-lg border-4 ${
   // fill
   width={70}
   height={70}
-   unoptimized={true} 
+  //  unoptimized={true} 
   // sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
 />
                 </Zoom>

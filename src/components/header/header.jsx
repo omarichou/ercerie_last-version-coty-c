@@ -582,7 +582,7 @@ const Header = () => {
                             alt={product.title[locale]}
                             className="rounded-lg object-cover"
                             loading="lazy"
-                            unoptimized={true}
+                            // unoptimized={true}
                           />
                         </div>
                         <div className="flex-1 min-w-0">
@@ -742,7 +742,7 @@ const Header = () => {
                                 className="object-cover group-hover:scale-110 transition-transform duration-300"
                                 alt={item.id_product.title[locale]}
                                 loading="lazy"
-                                unoptimized={true}
+                                // unoptimized={true}
                               />
                               {/* Quantity Badge */}
                             </div>

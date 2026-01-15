@@ -1530,7 +1530,7 @@ const CategoryHeader = ({
                     fill
                     sizes="(max-width: 640px) 100vw, 192px"
                     loading="lazy"
-                    unoptimized={false}
+                    // unoptimized={false}
                   />
                 </div>
               </div>
@@ -1608,7 +1608,7 @@ const CategoryHeader = ({
                           }}
                           fill
                           loading="lazy"
-                          unoptimized={false}
+                          // unoptimized={false}
                         />
                       </div>
                       <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ring-2 ring-white dark:ring-gray-800 bg-amber-400" />
@@ -1676,7 +1676,7 @@ const ProductCard = ({ item, index, locale, t, calculerPourcentageReduction, vie
         }`}
       >
         <Image
-          unoptimized={true}
+          // unoptimized={true}
           src={getOptimizedImageUrl(item.array_ProductImg[0], false)}
           alt={locale === "ar" ? item.title.ar : item.title.fr}
           fill
@@ -1705,7 +1705,7 @@ const ProductCard = ({ item, index, locale, t, calculerPourcentageReduction, vie
               viewMode === "list" ? "rounded-lg" : ""
             }`}
             loading="lazy"
-            unoptimized={true}
+            // unoptimized={true}
           />
         )}
 

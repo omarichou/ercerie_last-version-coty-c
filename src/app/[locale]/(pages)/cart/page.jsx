@@ -460,7 +460,7 @@ const Page = () => {
                     height={80}
                     className="rounded-lg object-cover"
                     alt={item.id_product.title[locale]}
-                     unoptimized={true} 
+                    //  unoptimized={true} 
                   />
                   <div className="flex-1">
                     <h3 className="font-medium">

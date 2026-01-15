@@ -168,7 +168,7 @@ const ProductCard = ({ item, locale, t, calculerPourcentageReduction, toggleFavo
     >
       <div className="relative pt-[100%] overflow-hidden">
         <Image
-          unoptimized={true}
+          // unoptimized={true}
           src={optimizeCloudinaryUrl(item.array_ProductImg[0]?.secure_url)}
           alt={locale === "ar" ? item.title.ar : item.title.fr}
           fill
@@ -187,7 +187,7 @@ const ProductCard = ({ item, locale, t, calculerPourcentageReduction, toggleFavo
             sizes="(max-width: 640px) 50vw, 25vw"
             className="object-cover transition-all duration-500 opacity-0 scale-110 group-hover:opacity-100 group-hover:scale-105"
             loading="lazy"
-            unoptimized={true}
+            // unoptimized={true}
           />
         )}
 
