@@ -16,8 +16,6 @@ services:
       - PORT=3000
       - HOSTNAME=0.0.0.0
     restart: unless-stopped
-    depends_on:
-      - nginx
     networks:
       - crystal-app-network-prod
 
