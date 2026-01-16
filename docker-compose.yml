@@ -116,9 +116,7 @@ version: '3.8'
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/omarichou/ercerie_last-version-coty-c:latest
     container_name: crystal_mercerie_container
     ports:
       - "3000:3000"
