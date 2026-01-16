@@ -483,7 +483,7 @@ const Header = () => {
                       href={pathname}
                       className="text-sm text-[#3e3e3e] dark:text-white  w-full"
                     >
-                      français
+                      français fr
                     </Link>
 
                     <Link
@@ -491,7 +491,7 @@ const Header = () => {
                       href={pathname}
                       className="text-sm text-[#3e3e3e] dark:text-white  w-full"
                     >
-                      العربية
+                      العربية ar
                     </Link>
                   </div>
                 </DropdownMenuContent>
