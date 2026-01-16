@@ -28,7 +28,7 @@
 
 
 
-name: Build, Push, and Deploy
+name: Deploy to VPS
 
 on:
   push:
@@ -36,36 +36,7 @@ on:
       - main
 
 jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          push: true
-          tags: ghcr.io/${{ github.repository_owner }}/ercerie_last-version-coty-c:latest
-          cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/ercerie_last-version-coty-c:buildcache
-          cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/ercerie_last-version-coty-c:buildcache,mode=max
-
   deploy:
-    needs: build-and-push
     runs-on: ubuntu-latest
 
     steps:
@@ -80,5 +51,6 @@ jobs:
             cd ~/ercerie_last-version-coty-c
             git pull origin main
             docker compose down
-            docker compose pull
+            docker compose build --no-cache
             docker compose up -d
+            docker system prune -f
