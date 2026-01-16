@@ -28,7 +28,7 @@
 
 
 
-name: Build and Push Docker Image
+name: Build, Push, and Deploy
 
 on:
   push:
@@ -36,7 +36,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -63,3 +63,22 @@ jobs:
           tags: ghcr.io/${{ github.repository_owner }}/ercerie_last-version-coty-c:latest
           cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/ercerie_last-version-coty-c:buildcache
           cache-to: type=registry,ref=ghcr.io/${{ github.repository_owner }}/ercerie_last-version-coty-c:buildcache,mode=max
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: 22
+          script: |
+            cd ~/ercerie_last-version-coty-c
+            git pull origin main
+            docker compose down
+            docker compose pull
+            docker compose up -d
