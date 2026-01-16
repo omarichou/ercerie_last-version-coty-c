@@ -443,7 +443,7 @@ const Header = () => {
               href={"/"}
               className="text-sm text-[#3e3e3e] dark:text-white  transform hover:scale-105 transition duration-200"
             >
-              hhhhh
+              {t("home")}
 
             </Link>
             <Link
@@ -483,7 +483,7 @@ const Header = () => {
                       href={pathname}
                       className="text-sm text-[#3e3e3e] dark:text-white  w-full"
                     >
-                      français  frffffffffff
+                      français  fr
                     </Link>
 
                     <Link
