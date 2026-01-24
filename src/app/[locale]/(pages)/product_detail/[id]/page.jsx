@@ -115,9 +115,9 @@ async function getProductData(id) {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_MY_URL}/api/get_one_product?id=${id}`,
       {
-        // next: {
-        //   revalidate: 3600, // Revalider toutes les heures
-        // },
+        next: {
+          revalidate: 3600, // Revalider toutes les heures
+        },
         headers: {
           'Content-Type': 'application/json',
         },

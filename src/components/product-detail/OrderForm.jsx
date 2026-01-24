@@ -155,12 +155,14 @@ const OrderForm = ({
                       <option value="">Choisir un point relais</option>
                       {isLoadingCenters ? (
                         <option value="">Chargement...</option>
-                      ) : (
-                        centers?.map((center) => (
+                      ) : Array.isArray(centers) && centers.length > 0 ? (
+                        centers.map((center) => (
                           <option key={center.center_id} value={center.center_id}>
                             {center.center_id} - {center.address}
                           </option>
                         ))
+                      ) : (
+                        <option value="">Aucun centre disponible</option>
                       )}
                     </select>
                   </div>
