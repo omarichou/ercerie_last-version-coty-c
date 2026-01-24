@@ -115,9 +115,9 @@ async function getProductData(id) {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_MY_URL}/api/get_one_product?id=${id}`,
       {
-        next: {
-          revalidate: 3600, // Revalider toutes les heures
-        },
+        // next: {
+        //   revalidate: 3600, // Revalider toutes les heures
+        // },
         headers: {
           'Content-Type': 'application/json',
         },
@@ -213,12 +213,12 @@ const Page = async ({ params }) => {
   return (
     <>
       <ProductDetail product={product} price_min={price_min} />
-      <div className="container mx-auto px-4 mb-8">
+      {/* <div className="container mx-auto px-4 mb-8">
         <RelatedProducts 
           productId={id} 
           currentProductCategory={product.categorie} 
         />
-      </div>
+      </div> */}
     </>
   );
 };

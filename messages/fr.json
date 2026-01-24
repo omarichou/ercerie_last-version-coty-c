@@ -119,6 +119,7 @@
     "failedToAddProduct": "Échec de l'ajout du produit",
     "fillAllFields": "Veuillez remplir tous les champs et fournir une note.",
     "failedToAddComment": "Échec de l'ajout du commentaire",
+    "selectVariant": "Veuillez sélectionner : {variant}",
     "thankYouForReview": "Merci pour votre avis !",
     "hideReviews": "Masquer les avis",
     "showReviews": "Afficher les avis",

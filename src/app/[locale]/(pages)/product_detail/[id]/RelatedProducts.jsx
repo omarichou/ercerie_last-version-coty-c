@@ -2,9 +2,16 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "i18n/navigation";
+
 import { useLocale, useTranslations } from "next-intl";
-import { Star, ShoppingCart, Heart, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Star,
+  ShoppingCart,
+  Heart,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 const RelatedProducts = ({ productId, currentProductCategory }) => {
   const locale = useLocale();
@@ -18,7 +25,7 @@ const RelatedProducts = ({ productId, currentProductCategory }) => {
     const fetchRelatedProducts = async () => {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_MY_URL}/api/get_related_products?id=${productId}&limit=8`
+          `${process.env.NEXT_PUBLIC_MY_URL}/api/get_related_products?id=${productId}&limit=8`,
         );
         if (res.ok) {
           const data = await res.json();
@@ -52,23 +59,33 @@ const RelatedProducts = ({ productId, currentProductCategory }) => {
   };
 
   const optimizeCloudinaryUrl = (url) => {
-    return url?.replace('/upload/', '/upload/q_auto:good,f_webp,w_300,c_fill/') || "/images/gg1.webp";
+    return (
+      url?.replace("/upload/", "/upload/q_auto:good,f_webp,w_300,c_fill/") ||
+      "/images/gg1.webp"
+    );
   };
 
   const calculerPourcentageReduction = (ancienPrix, prix) => {
-    if (!ancienPrix || ancienPrix <= 0 || !prix || prix <= 0 || ancienPrix <= prix) return 0;
+    if (
+      !ancienPrix ||
+      ancienPrix <= 0 ||
+      !prix ||
+      prix <= 0 ||
+      ancienPrix <= prix
+    )
+      return 0;
     return Math.round(((ancienPrix - prix) / ancienPrix) * 100);
   };
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => 
-      prev + 1 >= relatedProducts.length - 3 ? 0 : prev + 1
+    setCurrentIndex((prev) =>
+      prev + 1 >= relatedProducts.length - 3 ? 0 : prev + 1,
     );
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => 
-      prev === 0 ? Math.max(0, relatedProducts.length - 4) : prev - 1
+    setCurrentIndex((prev) =>
+      prev === 0 ? Math.max(0, relatedProducts.length - 4) : prev - 1,
     );
   };
 
@@ -78,7 +95,10 @@ const RelatedProducts = ({ productId, currentProductCategory }) => {
         <div className="h-8 bg-gray-300 dark:bg-gray-700 rounded w-48 mb-6"></div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="bg-gray-200 dark:bg-gray-700 rounded-xl h-80"></div>
+            <div
+              key={i}
+              className="bg-gray-200 dark:bg-gray-700 rounded-xl h-80"
+            ></div>
           ))}
         </div>
       </div>
@@ -90,7 +110,7 @@ const RelatedProducts = ({ productId, currentProductCategory }) => {
   }
 
   return (
-    <div className="mt-12 bg-white dark:bg-gray-800 p-4 md:p-8 rounded-lg shadow-lg dark:shadow-gray-700">
+    <div className="mt-12">
       <h2 className="text-2xl md:text-3xl font-bold mb-6 text-[#3e3e3e] dark:text-white">
         {t("relatedProducts") || "Produits similaires"}
       </h2>
@@ -115,7 +135,7 @@ const RelatedProducts = ({ productId, currentProductCategory }) => {
             </button>
           </>
         )}
-        
+
         <div className="overflow-hidden">
           <div
             className="flex transition-transform duration-500 ease-in-out gap-4"
@@ -156,7 +176,15 @@ const RelatedProducts = ({ productId, currentProductCategory }) => {
   );
 };
 
-const ProductCard = ({ item, locale, t, calculerPourcentageReduction, toggleFavorite, favorites, optimizeCloudinaryUrl }) => {
+const ProductCard = ({
+  item,
+  locale,
+  t,
+  calculerPourcentageReduction,
+  toggleFavorite,
+  favorites,
+  optimizeCloudinaryUrl,
+}) => {
   const isFavorite = favorites.has(item._id);
   const reduction = calculerPourcentageReduction(item.ancien_price, item.price);
   const hasSecondImage = item.array_ProductImg[1]?.secure_url;
@@ -174,7 +202,9 @@ const ProductCard = ({ item, locale, t, calculerPourcentageReduction, toggleFavo
           fill
           sizes="(max-width: 640px) 50vw, 25vw"
           className={`object-cover transition-all duration-500 ${
-            hasSecondImage ? "group-hover:opacity-0 group-hover:scale-110" : "group-hover:scale-105"
+            hasSecondImage
+              ? "group-hover:opacity-0 group-hover:scale-110"
+              : "group-hover:scale-105"
           }`}
           loading="lazy"
         />
@@ -235,9 +265,9 @@ const ProductCard = ({ item, locale, t, calculerPourcentageReduction, toggleFavo
           </span>
         </div>
 
-        <button className="flex justify-center items-center gap-2 w-full bg-gradient-to-r from-[#D4AF37] to-[#FFD700] text-white py-2 px-3 rounded-lg hover:from-[#C9A227] hover:to-[#E6C200] transition-all duration-300 text-sm font-medium hover:shadow-md transform hover:scale-[1.02]">
-          <ShoppingCart className="w-4 h-4" />
-          {t("viewDetails") || "Voir détails"}
+        <button className="flex justify-center items-center gap-2 w-full bg-gradient-to-r from-[#D4AF37] to-[#FFD700] text-white py-1.5 sm:py-2 px-3 rounded-lg hover:from-[#C9A227] hover:to-[#E6C200] transition-all duration-300 font-medium text-xs sm:text-sm hover:shadow-md hover:shadow-yellow-500/25 transform hover:scale-[1.02] active:scale-[0.98]">
+          <ShoppingCart className="w-3 h-3 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:scale-110" />
+          {t("viewDetails")}
         </button>
       </div>
     </Link>

@@ -15,6 +15,10 @@ const Caracteristique_colorSchema = new Schema({
       secure_url: String,
       public_id_url: String,
       },
+  priceAdjustment: { 
+      type: Number, 
+      required: false 
+  }, // Ajustement de prix par rapport au prix de base (peut être positif ou négatif)
     
 
 });

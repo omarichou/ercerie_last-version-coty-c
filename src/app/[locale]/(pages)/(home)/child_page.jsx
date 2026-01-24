@@ -352,7 +352,7 @@ const slides = [
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           <div className="flex items-center justify-center mb-6 sm:mb-8 lg:mb-12">
             <div className="flex-grow h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent max-w-24 sm:max-w-48 lg:max-w-xs"></div>
-            <span className="mx-3 sm:mx-4 lg:mx-6 text-sm sm:text-lg lg:text-xl xl:text-2xl font-bold text-[#D4AF37] dark:text-[#FFD700] px-2 sm:px-4">
+            <span className="mx-3 sm:mx-4 lg:mx-6 text-lg sm:text-xl lg:text-2xl font-bold text-[#D4AF37] dark:text-[#FFD700] px-2 sm:px-4">
               {t("popularCategories")}
             </span>
             <div className="flex-grow h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent max-w-24 sm:max-w-48 lg:max-w-xs"></div>
@@ -418,7 +418,7 @@ const slides = [
         {/* En-tête avec filtres */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 lg:mb-8 gap-3 sm:gap-4">
           <div className="flex items-center gap-2 sm:gap-4">
-            <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-[#D4AF37] dark:text-[#FFD700]">
+            <h2 className="text-sm sm:text-lg lg:text-xl xl:text-2xl font-bold text-[#D4AF37] dark:text-[#FFD700]">
               {t("plusvendus")}
             </h2>
             <span className="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">

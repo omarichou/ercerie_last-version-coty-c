@@ -120,6 +120,7 @@
     "failedToAddProduct": "فشل إضافة المنتج",
     "fillAllFields": "يرجى ملء جميع الحقول وتقديم تقييم.",
     "failedToAddComment": "فشل إضافة التعليق",
+    "selectVariant": "يرجى اختيار: {variant}",
     "thankYouForReview": "شكرًا على تقييمك!",
     "hideReviews": "إخفاء التقييمات",
     "showReviews": "عرض التقييمات",

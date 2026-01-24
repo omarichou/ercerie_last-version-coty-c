@@ -106,6 +106,7 @@ import "react-toastify/dist/ReactToastify.css"; // N'oubliez pas d'importer les 
 import { SidebarDemo } from "components/sidebar/sidebar";
 import Header from "components/header/header";
 import Footer from "components/footer/footer";
+import { FloatingCart } from "components/FloatingCart/FloatingCart";
 
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -180,7 +181,7 @@ export default async function RootLayout({ children, params }) {
                   theme="colored"
                 />
 
-                <ScrollTop />
+                {/* <ScrollTop /> */}
                 <FacebookPixel />
 
                 <Header />
@@ -189,6 +190,8 @@ export default async function RootLayout({ children, params }) {
                     <Analytics />
                     
                 <Footer />
+
+                <FloatingCart />
 
                 <SpeedInsights />
               </div>
