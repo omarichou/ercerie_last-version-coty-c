@@ -130,6 +130,11 @@ const Page = () => {
     return matchesStatus && matchesDate;
   });
 
+
+    const generateShortId = (fullId) => {
+    return fullId.slice(-8).toUpperCase();
+  };
+
   // Pagination
   const indexOfLastOrder = currentPage * ordersPerPage;
   const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
@@ -215,7 +220,7 @@ const Page = () => {
                   </div>
                   <div className="border-b flex-grow py-[3rem] relative flex flex-col gap-2 dark:border-gray-700">
                     <p className="text-[14px] md:text-[16px] font-semibold text-or_color dark:text-or_color2">
-                      #{item._id}
+                        #{generateShortId(item._id)}
                     </p>
                     {item.array_product.map((product, idx) => (
                       <p
