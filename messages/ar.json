@@ -35,9 +35,12 @@
     "AucunProduit": "لا يوجد منتج",
     "EssayezModifierFiltrage": "حاول تغيير معايير البحث أو التصفية الخاصة بك",
     "Touteslescatégories": "جميع الفئات",
+    "SousCategorie": "الفئة الفرعية",
+    "ToutesSousCategories": "كل الفئات الفرعية",
     "Catégorie": "فئة",
     "AutresCatégories": "فئات أخرى",
     "Découvreznotresélectionpremium": "اكتشف مجموعتنا المميزة",
+    "voirCategories": "شاهد الفئات",
     "found": "موجود"
   },
   "Header": {

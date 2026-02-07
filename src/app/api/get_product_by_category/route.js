@@ -124,6 +124,7 @@ export async function GET(request) {
     const limit = parseInt(request.nextUrl.searchParams.get("limit")) || 12;
     const searchTerm = request.nextUrl.searchParams.get("search") || "";
     const sortBy = request.nextUrl.searchParams.get("sortBy") || "name";
+    const subCategory = request.nextUrl.searchParams.get("sub") || "";
     
     // Calculer le skip pour la pagination
     const skip = (page - 1) * limit;
@@ -133,6 +134,10 @@ export async function GET(request) {
       categorie: category_produit, 
       disponible: "disponible" 
     };
+
+    if (subCategory) {
+      query.subCategory = subCategory;
+    }
 
    //Construire la requête de recherche dans tout les category si  searchTerm exist 
     //   let query = { 

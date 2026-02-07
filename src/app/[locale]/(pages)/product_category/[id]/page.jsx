@@ -149,12 +149,13 @@ import PCatgory from "./P_catgory";
 
 
 
-async function getProductData(id, page = 1, search = "", sortBy = "name") {
+async function getProductData(id, page = 1, search = "", sortBy = "name", sub = "") {
   try {
     const searchParam = search ? `&search=${encodeURIComponent(search)}` : "";
     const sortParam = sortBy ? `&sortBy=${sortBy}` : "";
+    const subParam = sub ? `&sub=${encodeURIComponent(sub)}` : "";
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_MY_URL}/api/get_product_by_category?id=${id}&page=${page}&limit=12${searchParam}${sortParam}`,
+      `${process.env.NEXT_PUBLIC_MY_URL}/api/get_product_by_category?id=${id}&page=${page}&limit=12${searchParam}${sortParam}${subParam}`,
       {
         next: {
           revalidate: 3600,
@@ -200,8 +201,9 @@ const Page = async ({ params, searchParams }) => {
   const page = parseInt(searchParams.page) || 1;
   const search = searchParams.search || "";
   const sortBy = searchParams.sortBy || "name";
+  const sub = searchParams.sub || "";
   
-  const data = await getProductData(id, page, search, sortBy);
+  const data = await getProductData(id, page, search, sortBy, sub);
   
   if (!data) {
     return <div>Produits non trouvé</div>;

@@ -6,6 +6,7 @@ const productSchema = new Schema({
   variant: [{ type: mongoose.Schema.Types.ObjectId, ref: "Caracteristique" }],
   variant_color: [{ type: mongoose.Schema.Types.ObjectId, ref: "Caracteristique_color" }],
   categorie: String,
+  subCategory: String,
   title: {
     fr: String, // Titre en français
     ar: String, // Titre en arabe

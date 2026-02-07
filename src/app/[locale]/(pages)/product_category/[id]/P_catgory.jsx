@@ -1485,12 +1485,15 @@ const cloudinaryOptimizer = {
 const CategoryHeader = ({ 
   currentCategory, 
   locale = "fr",
-  categoryList = category
+  categoryList = category,
+  selectedSubCategory = "",
+  onSubCategoryChange
 }) => {
   const scrollContainerRef = useRef(null);
     
   const current = categoryList.find(cat => cat.name_search === currentCategory) || categoryList[0];
   const otherCategories = categoryList.filter(cat => cat.name_search !== currentCategory);
+  const subcategories = current?.subcategories || [];
 
   const scrollContainer = (direction) => {
     const container = scrollContainerRef.current;
@@ -1626,6 +1629,30 @@ const CategoryHeader = ({
           </div>
         </div>
       </div>
+
+      {subcategories.length > 0 && (
+        <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 items-start sm:items-center">
+              <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                {t("SousCategorie")}
+              </label>
+              <select
+                value={selectedSubCategory}
+                onChange={(e) => onSubCategoryChange(e.target.value)}
+                className="w-full sm:w-72 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-[#D4AF37] text-sm"
+              >
+                <option value="">{t("ToutesSousCategories")}</option>
+                {subcategories.map((sub) => (
+                  <option key={sub.name_search} value={sub.name_search}>
+                    {locale === "ar" ? sub.name_ar : sub.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+      )}
 
       <style jsx global>{`
         .scrollbar-hide {
@@ -1772,12 +1799,13 @@ const ProductCard = ({ item, index, locale, t, calculerPourcentageReduction, vie
         </div>
 
         <div className="flex gap-2">
-          <Link href={`/product_detail/${item._id}`} className="flex-1">
-            <button className="flex justify-center items-center gap-2 w-full bg-gradient-to-r from-[#D4AF37] to-[#FFD700] text-white py-1.5 sm:py-2 px-3 rounded-lg hover:from-[#C9A227] hover:to-[#E6C200] transition-all duration-300 font-medium text-xs sm:text-sm hover:shadow-md hover:shadow-yellow-500/25 transform hover:scale-[1.02] active:scale-[0.98]">
-              <ShoppingCart className="w-3 h-3 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:scale-110" />
-              {t("viewDetails")}
-            </button>
-          </Link>
+          <button
+            type="button"
+            className="flex justify-center items-center gap-2 w-full bg-gradient-to-r from-[#D4AF37] to-[#FFD700] text-white py-1.5 sm:py-2 px-3 rounded-lg hover:from-[#C9A227] hover:to-[#E6C200] transition-all duration-300 font-medium text-xs sm:text-sm hover:shadow-md hover:shadow-yellow-500/25 transform hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <ShoppingCart className="w-3 h-3 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:scale-110" />
+            {t("viewDetails")}
+          </button>
         </div>
       </div>
     </Link>
@@ -1854,6 +1882,7 @@ const PCatgory = ({ products, pagination, category }) => {
   const [favorites, setFavorites] = useState(new Set());
   const [currentPage, setCurrentPage] = useState(pagination?.currentPage || 1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedSubCategory, setSelectedSubCategory] = useState("");
   
   const [filters, setFilters] = useState({
     priceRange: [0, 100000],
@@ -1877,9 +1906,26 @@ const PCatgory = ({ products, pagination, category }) => {
     console.log("params after modifé search:", params.toString());
 
     }
+    if (selectedSubCategory) {
+      params.set('sub', selectedSubCategory);
+    } else {
+      params.delete('sub');
+    }
     params.set('page', '1'); // Réinitialiser à la page 1 lors de la recherche
     router.push(`?${params.toString()}`, { scroll: false });
-  }, [searchTerm, searchParams, router]);
+  }, [searchTerm, selectedSubCategory, searchParams, router]);
+
+  const handleSubCategoryChange = useCallback((value) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (value) {
+      params.set('sub', value);
+    } else {
+      params.delete('sub');
+    }
+    params.set('page', '1');
+    router.push(`?${params.toString()}`, { scroll: false });
+    setSelectedSubCategory(value);
+  }, [searchParams, router]);
 
   // Debounce pour la recherche automatique
   // useEffect(() => {
@@ -1987,6 +2033,11 @@ useEffect(() => {
     setSearchTerm(searchFromUrl);
   }, [searchParams]);
 
+  useEffect(() => {
+    const subFromUrl = searchParams.get('sub') || '';
+    setSelectedSubCategory(subFromUrl);
+  }, [searchParams]);
+
     useEffect(() => {
       if (products && products.length > 0) {
         const [min, max] = getMinMaxPrices;
@@ -2023,7 +2074,12 @@ useEffect(() => {
 
   return (
     <div className="border border-gray-200 dark:border-gray-700 py-8 px-4 sm:py-12 sm:px-6 md:rounded-xl bg-white dark:bg-gray-800 shadow-sm">
-      <CategoryHeader currentCategory={category} locale={locale} />
+      <CategoryHeader
+        currentCategory={category}
+        locale={locale}
+        selectedSubCategory={selectedSubCategory}
+        onSubCategoryChange={handleSubCategoryChange}
+      />
 
         <div className="flex flex-col gap-3.5 items-start justify-normal mb-8">
             <div className="flex items-center justify-center w-full mb-4 md:mb-0">

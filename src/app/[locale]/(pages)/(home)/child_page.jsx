@@ -207,6 +207,12 @@ const slides = [
     setScrollPosition(newPosition);
   };
 
+  const scrollToPopularCategories = () => {
+    const target = document.getElementById("popular-categories");
+    if (!target) return;
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   // Effets
   useEffect(() => {
     applyFilters();
@@ -348,7 +354,10 @@ const slides = [
       */}
 
       {/* Section Catégories */}
-      <div className="py-8 sm:py-12 lg:py-16 mb-8 sm:mb-12 lg:mb-16">
+      <div
+        id="popular-categories"
+        className="py-8 sm:py-12 lg:py-16 mb-8 sm:mb-12 lg:mb-16"
+      >
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           <div className="flex items-center justify-center mb-6 sm:mb-8 lg:mb-12">
             <div className="flex-grow h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent max-w-24 sm:max-w-48 lg:max-w-xs"></div>
@@ -798,6 +807,15 @@ const slides = [
             </div>
           </div>
         )}
+
+        <div className="flex justify-center mt-8 sm:mt-12">
+          <button
+            onClick={scrollToPopularCategories}
+            className="px-4 sm:px-6 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#D4AF37] to-[#FFD700] hover:from-[#C9A227] hover:to-[#E6C200] transition-all duration-300 shadow-md hover:shadow-lg"
+          >
+            {t("voirCategories")}
+          </button>
+        </div>
       </div>
 
       {/* Styles personnalisés */}
