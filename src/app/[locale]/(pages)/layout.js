@@ -116,8 +116,6 @@ import { ThemeProvider } from "components/theme-provider";
 import FacebookPixel from "components/FacebookPixel";
 import { ClientProviders } from "components/providers/ClientProviders";
 
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from '@vercel/analytics/react';
 export const revalidate = 3600; // revalidate at most every hour
 
 const geistSans = Geist({
@@ -187,13 +185,9 @@ export default async function RootLayout({ children, params }) {
                 <Header />
 
                 <main className="flex-grow">{children}</main>
-                    <Analytics />
-                    
                 <Footer />
 
                 <FloatingCart />
-
-                <SpeedInsights />
               </div>
             </NextIntlClientProvider>
           </ClientProviders>
