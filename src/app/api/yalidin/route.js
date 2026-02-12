@@ -20,7 +20,7 @@ export async function GET(request) {
       return NextResponse.json([], { status: 200 });
     }
 
-    const apiUrl = `https://api.yalidine.com/v1/centers?wilaya_id=${Number(wilaya)}`;
+    const apiUrl = `https://api.yalidine.app/v1/centers?wilaya_id=${Number(wilaya)}`;
     
     console.log('Appel API Yalidine:', apiUrl);
     console.log('Headers:', {
@@ -35,7 +35,7 @@ export async function GET(request) {
         'X-API-TOKEN': process.env.YALIDINE_API_TOKEN,
         'Content-Type': 'application/json'
       },
-      // next: { revalidate: 3600 }
+      
     });
 
     if (!response.ok) {
